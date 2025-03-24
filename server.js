@@ -43,7 +43,10 @@ io.on("connection", (socket) => {
 const scrapeTikTok = async () => {
     console.log("Launching Playwright...");
 
-    const browser = await chromium.launch({ headless: true });
+    const browser = await chromium.launch({
+        headless: true,
+        executablePath: process.env.PLAYWRIGHT_BROWSERS_PATH || undefined
+    });
     const page = await browser.newPage();
 
     try {
